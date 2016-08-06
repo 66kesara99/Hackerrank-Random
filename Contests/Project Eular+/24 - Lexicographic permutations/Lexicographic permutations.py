@@ -13,3 +13,4 @@ t = int(input())
 for i in range(t):
     n = int(input())
     print('abc'+a[n-1])
+

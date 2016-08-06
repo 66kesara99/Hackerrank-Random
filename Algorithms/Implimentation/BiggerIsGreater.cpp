@@ -12,6 +12,7 @@ int main(){
 		string s;
 		cin >> s;
 
+		// Find the longest acending array
 		int i;
 		for (i = s.length()-2; i>=0; i--){
 			if (s[i] < s[i+1]){
@@ -23,6 +24,7 @@ int main(){
 			cout << "no answer" << endl;
 		}
 
+		// Get the next permutation
 		else{
 			for (int j = s.length()-1; j>i; j--){
 				if (s[j]>s[i]){
@@ -30,13 +32,15 @@ int main(){
 					break;
 				}
 			}
+			string temp;
+
 			for (int j = 0; j<=i;j++){
-				cout << s[j];
+				temp = temp+s[j];
 			}
 			for (int j = s.length()-1; j>i;j--){
-				cout << s[j];
+				temp = temp+s[j];
 			}
-			cout << endl;
+			cout << temp << endl;
 		}
 	}
 	return 0;
