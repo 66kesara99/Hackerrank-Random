@@ -1,0 +1,14 @@
+t=int(input())
+
+for j in range(t):
+    n=int(input())
+    a,b=0,1
+    s=0
+    while a<n:
+        if a%2==0:
+            s=s+a
+        a,b=b,a+b
+
+    print(s)
+
+    
