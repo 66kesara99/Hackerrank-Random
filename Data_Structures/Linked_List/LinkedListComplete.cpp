@@ -68,6 +68,106 @@ Node* Delete(Node *head, int position){
 
 }
 
+void ReversePrint(Node *head)
+{
+
+    if (head == NULL){
+        return;
+    } else {
+        Node *current = NULL;
+        Node *temp = NULL;
+        while (current != head){
+            temp = head;
+            while (temp -> next != current){
+                temp = temp->next;
+            }
+            cout << temp->data << endl;
+            current = temp;
+        }
+        
+    }
+}
+
+Node* Reverse(Node *head)
+{
+
+    Node *ret = NULL;
+    if (head == NULL){
+        return NULL;
+    } else {
+        Node *curHead, *newHead;
+        newHead = NULL;
+        curHead = head;
+        while(curHead != NULL){
+            Node *temp = curHead;
+            curHead = curHead -> next;
+            temp -> next = newHead;
+            newHead = temp;
+        }
+        return newHead;
+    }
+}
+
+int CompareLists(Node *headA, Node* headB)
+{
+    
+    if (headA == NULL && headB == NULL){
+        return 1;
+    } else if ((headA == NULL && headB != NULL) || (headA != NULL && headB == NULL)) {
+        return 0;
+    } else {
+        while (headA != NULL && headB != NULL){
+            if (headA -> data != headB -> data){
+                return 0;
+            }
+            headA = headA -> next;
+            headB = headB -> next;
+        }
+        if (headA == headB){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}
+
+Node* MergeLists(Node *headA, Node* headB)
+{
+    
+    if (headA == NULL){
+        return headB;
+    } else if (headB == NULL){
+        return headA;
+    } else {
+        Node *ret = NULL;
+        if (headA -> data > headB -> data){
+            ret = headB;
+            headB = headB -> next;
+        } else {
+            ret = headA;
+            headA = headA -> next;
+        }
+        Node *temp = ret;
+        while (headA != NULL && headB != NULL){
+            if (headA -> data > headB -> data){
+                temp -> next = headB;                
+                headB = headB -> next;
+            } else {
+                temp -> next = headA;
+                headA = headA -> next;
+            }
+            temp = temp -> next;
+        }
+        
+        if (headA != NULL){
+            temp -> next = headA;
+        } else if (headB != NULL){
+            temp -> next = headB;
+        }
+        return ret;
+    }
+}
+
 int main(){
     
 }
