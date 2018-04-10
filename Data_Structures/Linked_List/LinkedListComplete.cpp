@@ -168,6 +168,92 @@ Node* MergeLists(Node *headA, Node* headB)
     }
 }
 
+int GetNode(Node *head,int positionFromTail)
+{ 
+    
+    Node *current = head;
+    for (int i = 0; i<positionFromTail; i++){
+        current = current->next;
+    }
+
+    Node *follow = head;
+    while (current -> next != NULL){
+        current = current -> next;
+        follow = follow -> next;
+    }
+
+    return follow -> data;
+}
+
+Node* RemoveDuplicates(Node *head)
+{
+    Node *current = head;
+    Node *temp = NULL;
+    if (head == NULL){
+        return NULL;
+    } else {
+        while (current -> next != NULL){
+            temp = current -> next;
+            while (current -> data == temp -> data && temp -> next != NULL){
+                temp = temp -> next;
+            }
+            
+            if (current -> data == temp -> data && temp -> next == NULL){
+                current -> next = NULL;
+                break;
+            }
+            current -> next = temp;
+            current = current -> next;
+        }
+        return head;
+    }
+}
+
+bool has_cycle(Node* head) {
+    
+    if (head == NULL){
+        return false;
+    } else if (head -> next == NULL){
+        return false;
+    } else {
+        Node *fast = head;
+        Node *slow = head;
+        
+        while (fast -> next -> next != NULL){
+            fast = fast -> next -> next;
+            slow = slow -> next;
+            
+            if (fast == slow){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+Node* Reverse(Node* head)
+{
+    if (head == NULL){
+        return NULL;
+    } else if (head -> next == NULL){
+        return head;
+    } else {
+        Node *current = head;
+        Node *nextOne = head;
+        Node * ret = NULL;
+        
+        while (nextOne != NULL){
+            nextOne = nextOne -> next;
+            Node *temp = current -> next;
+            current -> next = current -> prev;
+            current -> prev = temp;
+            ret = current;
+            current = nextOne;
+        }
+        return ret;
+    }
+}
+
 int main(){
     
 }
