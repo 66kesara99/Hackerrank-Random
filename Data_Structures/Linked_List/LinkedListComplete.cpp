@@ -254,6 +254,86 @@ Node* Reverse(Node* head)
     }
 }
 
+Node* InsertNth(Node *head, int data, int position)
+{
+    
+    Node *n = (Node*) malloc(sizeof(Node));
+    n -> data = data;
+    
+    if (head == NULL){
+        n -> next = NULL;
+        return n;
+    } else {
+        Node *current = head;
+        if (position == 0){
+            n -> next = head;
+            return n;
+        } else {
+            for (int i = 0; i<position-1; i++){
+                current = current -> next;
+            }
+            n -> next = current -> next;
+            current -> next = n;
+            return head;   
+        }
+    }  
+}
+
+int FindMergeNode(Node *headA, Node *headB)
+{
+    Node *currentA = headA;
+    Node *currentB = headB;
+    
+    while (currentA != currentB){
+        if (currentA == NULL){
+            currentA = headB;
+        } else {
+            currentA = currentA -> next;
+        }
+        
+        if (currentB == NULL){
+            currentB = headA;
+        } else {
+            currentB = currentB -> next;
+        }
+    }
+    return currentA -> data;
+}
+
+Node* SortedInsert(Node *head,int data)
+{
+    Node *current = head;
+    Node *n = (Node*)malloc(sizeof(Node));
+    
+    n -> data = data;
+
+    if (head == NULL){
+        n -> next = NULL;
+        n -> prev = NULL;
+        return n;
+    } else if (head -> data > data) {
+        n -> prev = NULL;
+        n -> next = head;
+        return n;
+    } else {
+        while (current -> data < data && current -> next != NULL){
+            current = current -> next;
+        }
+        
+        if (current -> data < data && current -> next == NULL){
+            n -> next = NULL;
+            n -> prev = current;
+            current -> next = n;
+        } else {
+            n -> next = current;
+            n -> prev = current -> prev;
+            current -> prev -> next = n;
+            current -> prev = n;
+        }
+        return head;
+    }
+}
+
 int main(){
     
 }
